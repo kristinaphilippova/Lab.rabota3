@@ -1,9 +1,9 @@
 #создание доски
 def create_chessboard():
     chessboard = []
-    for r in range(8):
+    for r in range(9):
         board_row = []
-        for c in range(8):
+        for c in range(9):
             board_row.append("W" if (r + c) % 2 == 0 else "B")
         chessboard.append(board_row)
     return chessboard
