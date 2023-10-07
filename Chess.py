@@ -15,55 +15,53 @@ def check_color(k, l, m, n):
     color2 = chessboard[m][n]
     return color1 == color2
 
-#Попадют ли фигуры на поле (m, n) за один ход
-def rook_threat(k, l, m, n):
-    return k == m or l == n
-
-def bishop_threat(k, l, m, n):
-    return abs(k - m) == abs(l - n)
-
-def queen_threat(k, l, m, n):
-    return rook_threat(k, l, m, n) or bishop_threat(k, l, m, n)
-
+#Попадет ли конь на поле (m, n) за один ход
 def knight_threat(k, l, m, n):
     knight_moves = [
         (k + 1, l + 2), (k + 2, l + 1), (k + 2, l - 1), (k + 1, l - 2),
         (k - 1, l - 2), (k - 2, l - 1), (k - 2, l + 1), (k - 1, l + 2)
     ]
     return (m, n) in knight_moves
-#Проверяем клетки на угрозы
+#Проверяем клетки на угрозы коня
 def check_threat(piece, k, l, m, n):
-    if piece == "queen":
-        return queen_threat(k, l, m, n)
-    elif piece == "rook":
-        return rook_threat(k, l, m, n)
-    elif piece == "bishop":
-        return bishop_threat(k, l, m, n)
     elif piece == "knight":
         return knight_threat(k, l, m, n)
     else:
         return False
-        
+#Смотрим ходы ладьи, ферзя и слона
+def is_valid_move(piece, k, l, m, n):
+    if piece == 'ладья':
+        if k == m or l == n:
+            return True
+    elif piece == 'ферзь':
+        if k == m or l == n or abs(k - m) == abs(l - n):
+            return True
+    elif piece == 'слон':
+        if abs(m - k) == abs(n - l):
+            return True
+    return False    
+#основной код
 k, l = map(int, input("Введите координаты первой клетки через пробел (Строка, столбец): ").split())
 m, n = map(int, input("Введите координаты второй клетки через пробел (Строка, столбец): ").split())
-
+#Проверка цвета через вызов функции check_color
 same_color = check_color(k, l, m, n)
 print(f"Цвета клеток ({k}, {l}) и ({m}, {n}) {'одинаковые' if same_color else 'разные'}.")
 
 piece = input("Введите название фигуры (ферзь, ладья, слон или конь): ")
 
-rook = rook_threat(k, l, m, n)
-bishop = bishop_threat(k, l, m, n)
-queen = queen_threat(k, l, m, n)
 knight = knight_threat(k, l, m, n)
-
-
-if rook:
-    print("Переход возможен за один ход ладьи, следовательно есть угроза.")
-elif bishop:
-    print("Переход возможен за один ход слона, следовательно есть угроза.")
-elif queen:
-    print("Переход возможен за один ход ферзя, следовательно есть угроза.")
+#Определяем промежуточное поле для ладьи, ферзя и слона
+if piece == "слон" or piece == "ферзь" or piece == "ладья":
+    if is_valid_move(piece, k, l, m, n):
+        print("Можно сделать один ход до конечной позиции")
+    else:
+        for i in range(8):
+            for j in range(8):
+                if (is_valid_move(piece, k, l, i, j) and
+                    is_valid_move(piece, i, j, m, n)):
+                    print(f"В два хода выбранная фигура может попасть через клетку ({i}, {j})")
+                    exit(0)
+        print("Невозможно сделать двух ходов до конечной позиции")
 elif knight:
     print("Переход возможен за один ход коня, следовательно есть угроза.")
 else:
