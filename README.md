@@ -1,23 +1,22 @@
 # Lab.rabota3
 ___
 # Автор программы
-Филиппова Кристина Данииловна Фт-220008
+Филиппова Кристина Данииловна `Фт-220008`
 ___
 # Суть программы
 
 Программа работает с шахмантым полем и с двумя произвольными клетками (введенных пользователем);
-Она определяет являются ли выбранные поля, полями одного цвета.
+Она определяет являются ли выбранные поля, полями одного цвета. Далее пользователю предлагается поставить на поле (k, l) слона, ферзя, коня или ладью, и исходя из введённой фигуры, программа определяет угрожает ли она второму полю.
 
 ## Тесты программы
 ### Тест 1
-![image](https://github.com/kristinaphilippova/Lab.rabota3/assets/146865479/0ac4ea64-bf73-4024-8afc-8000cf35bfa2)
+![image](https://github.com/kristinaphilippova/Lab.rabota3/assets/146865479/3e373732-f66e-43d0-9660-e28fe8b235b9)
 
 ### Тест 2
-![image](https://github.com/kristinaphilippova/Lab.rabota3/assets/146865479/5e2a7783-35c5-4a9f-94e4-45691213fe5f)
+![image](https://github.com/kristinaphilippova/Lab.rabota3/assets/146865479/ce3b79a2-e574-4901-9b17-9167a5b6d6b1)
 
 ### Тест 3
-![image](https://github.com/kristinaphilippova/Lab.rabota3/assets/146865479/96912d4c-d959-42aa-8d77-e5b0cf28b5ed)
-
+![image](https://github.com/kristinaphilippova/Lab.rabota3/assets/146865479/ec8ba65d-b5bb-49e4-8a35-a5b8ecf4ec5e)
 ___
 # Использование программы
 ## Какой файл стоит открывать
